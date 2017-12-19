@@ -1,0 +1,7 @@
+---
+service:
+  datacenter: "as65342"
+  port: 53
+  name: "unbound"
+  description: "Unbound recursive DNS service"
+  instance: "unbound-1"
