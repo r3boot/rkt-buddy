@@ -15,13 +15,7 @@ import (
 )
 
 const (
-	D_DEBUG     = false
-	D_CONSUL    = "http://localhost:8500"
-	D_CFGFILE   = "/etc/rkt-buddy.yaml"
-	D_SVC_PORT  = 0
-	D_SVC_DC    = ""
-	D_SVC_NAME  = ""
-	D_SVC_DESCR = ""
+	D_DEBUG = false
 )
 
 var (

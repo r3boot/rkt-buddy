@@ -10,5 +10,5 @@ type SystemData struct {
 
 var (
 	reAddress   = regexp.MustCompile("inet ([0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3})/[0-9]{1,2} scope global ")
-	reInterface = regexp.MustCompile("^([a-z]{2,3}[0-9]).*Link encap:Ethernet")
+	reInterface = regexp.MustCompile("^([a-z0-9]{2,7}):.*")
 )
