@@ -11,11 +11,8 @@ ${BUILD_DIR}:
 ${BUILD_DIR}/${UNBOUND}:
 	go build -v -o "${BUILD_DIR}/${UNBOUND}" cmd/${UNBOUND}/${UNBOUND}.go
 
-install:
+strip:
 	strip -v "${BUILD_DIR}/${UNBOUND}"
-	install -o root -g root -m 0755 \
-		"${BUILD_DIR}/${UNBOUND}" \
-		"${PREFIX}/${UNBOUND}"
 
 clean:
 	[ -d "${BUILD_DIR}" ] && rm -rf "${BUILD_DIR}" || true
