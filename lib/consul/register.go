@@ -42,9 +42,9 @@ type RegisterData struct {
 	Check          CheckData   `json:"Check"`
 }
 
-func (c *Consul) Register() error {
+func (c *Consul) RegisterService() error {
 
-	data, err := json.Marshal(c.registerMeta)
+	data, err := json.Marshal(c.registerCatalogMeta)
 	if err != nil {
 		return fmt.Errorf("Consul.Register json.Marshal: %v", err)
 	}

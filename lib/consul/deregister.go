@@ -13,7 +13,7 @@ type DeregisterData struct {
 }
 
 func (c *Consul) Deregister() error {
-	data, err := json.Marshal(c.deregisterMeta)
+	data, err := json.Marshal(c.deregisterCatalogMeta)
 	if err != nil {
 		return fmt.Errorf("Consul.Register json.Marshal: %v", err)
 	}

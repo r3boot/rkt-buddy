@@ -76,7 +76,7 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 		}
 	}
 
-	agent.registerMeta = RegisterData{
+	agent.registerCatalogMeta = RegisterData{
 		Datacenter: cfg.Service.Datacenter,
 		Id:         GenUuid(),
 		Node:       cfg.Service.Node,
@@ -103,7 +103,17 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 		},
 	}
 
-	agent.deregisterMeta = DeregisterData{
+	agent.registerCheckMeta = AgentCheckData{
+		Id:                             fmt.Sprintf("service:%s", svcName),
+		Name:                           fmt.Sprintf("Health check for %s", svcName),
+		Notes:                          svcDescr,
+		Http:                           fmt.Sprintf("http://%s:6548/v1/health", cfg.Service.Address),
+		Method:                         http.MethodGet,
+		Interval:                       "5s",
+		DeregisterCriticalServiceAfter: "30s",
+	}
+
+	agent.deregisterCatalogMeta = DeregisterData{
 		Datacenter: cfg.Service.Datacenter,
 		Node:       cfg.Service.Node,
 	}
