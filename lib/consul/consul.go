@@ -92,7 +92,7 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 			CheckId:   fmt.Sprintf("service:%s", svcName),
 			Name:      fmt.Sprintf("Health check for %s", svcName),
 			Notes:     svcDescr,
-			ServiceId: cfg.Service.Instance,
+			ServiceId: svcInstance,
 			Definition: CheckDefinitionData{
 				Http:     fmt.Sprintf("http://%s:6548/v1/health", cfg.Service.Address),
 				Interval: "5s",
