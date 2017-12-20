@@ -9,6 +9,8 @@ import (
 
 	"strings"
 
+	"strconv"
+
 	"github.com/r3boot/rkt-buddy/lib/config"
 	"github.com/r3boot/rkt-buddy/lib/logger"
 )
@@ -59,11 +61,20 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 
 	svcName := os.Getenv("AC_APP_NAME")
 	if svcName == "" {
-		return nil, fmt.Errorf("Buddy.FetchServiceMeta: AC_APP_NAME not set")
+		return nil, fmt.Errorf("NewConsul: AC_APP_NAME not set")
 	}
 	svcInstance := fmt.Sprintf("%s-%s", svcName, cfg.Service.Node)
 
 	svcDescr := os.Getenv("BUDDY_SVC_DESC")
+
+	svcPort := 0
+	value := os.Getenv("BUDDY_SVC_PORT")
+	if value != "" {
+		svcPort, err = strconv.Atoi(value)
+		if err != nil {
+			return nil, fmt.Errorf("NewConsul strconv.Atoi: %v", err)
+		}
+	}
 
 	agent.registerMeta = RegisterData{
 		Datacenter: cfg.Service.Datacenter,
@@ -74,7 +85,7 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 			Id:      svcInstance,
 			Service: svcName,
 			Address: cfg.Service.Address,
-			Port:    cfg.Service.Port,
+			Port:    svcPort,
 		},
 		Check: CheckData{
 			Node:      cfg.Service.Node,
