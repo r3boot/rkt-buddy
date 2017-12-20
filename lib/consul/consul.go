@@ -76,8 +76,10 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 		}
 	}
 
+	datacenter := os.Getenv("DC")
+
 	agent.registerCatalogMeta = RegisterData{
-		Datacenter: cfg.Service.Datacenter,
+		Datacenter: datacenter,
 		Id:         GenUuid(),
 		Node:       cfg.Service.Node,
 		Address:    cfg.Service.Address,
