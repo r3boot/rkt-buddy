@@ -95,6 +95,7 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 			ServiceId: svcInstance,
 			Definition: CheckDefinitionData{
 				Http:     fmt.Sprintf("http://%s:6548/v1/health", cfg.Service.Address),
+				Method:   http.MethodGet,
 				Interval: "5s",
 				Timeout:  "1s",
 				DeregisterCriticalServiceAfter: "30s",

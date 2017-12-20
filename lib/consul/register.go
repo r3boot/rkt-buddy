@@ -9,6 +9,7 @@ import (
 
 type CheckDefinitionData struct {
 	Http                           string `json:"HTTP"`
+	Method                         string `json:"Method"`
 	Interval                       string `json:"Interval"`
 	Timeout                        string `json:"Timeout"`
 	DeregisterCriticalServiceAfter string `json:"DeregisterCriticalServiceAfter"`
