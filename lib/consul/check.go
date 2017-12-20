@@ -10,6 +10,7 @@ import (
 type AgentCheckData struct {
 	Id                             string `json:"ID"`
 	Name                           string `json:"Name"`
+	Node                           string `json:"Node"`
 	Notes                          string `json:"Notes"`
 	DeregisterCriticalServiceAfter string `json:"DeregisterCriticalServiceAfter"`
 	Http                           string `json:"HTTP"`

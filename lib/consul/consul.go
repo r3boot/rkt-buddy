@@ -106,6 +106,7 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 	agent.registerCheckMeta = AgentCheckData{
 		Id:                             svcInstance,
 		Name:                           fmt.Sprintf("Health check for %s", svcName),
+		Node:                           cfg.Service.Node,
 		Notes:                          svcDescr,
 		Http:                           fmt.Sprintf("http://%s:6548/v1/health", cfg.Service.Address),
 		Method:                         http.MethodGet,
