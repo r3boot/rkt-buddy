@@ -91,7 +91,7 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 		},
 		Check: CheckData{
 			Node:      cfg.Service.Node,
-			CheckId:   fmt.Sprintf("service:%s", svcName),
+			CheckId:   svcInstance,
 			Name:      fmt.Sprintf("Health check for %s", svcName),
 			Notes:     svcDescr,
 			ServiceId: svcInstance,
