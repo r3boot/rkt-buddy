@@ -22,7 +22,7 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 
 	endpoint := "http://localhost:8500"
 	if value := os.Getenv("CONSUL_ENDPOINT"); value != "" {
-		endpoint = ""
+		endpoint = value
 	}
 
 	transport := &http.Transport{
