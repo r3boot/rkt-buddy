@@ -90,20 +90,6 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 			Address: cfg.Service.Address,
 			Port:    svcPort,
 		},
-		Check: CheckData{
-			Node:      cfg.Service.Node,
-			CheckId:   svcInstance,
-			Name:      fmt.Sprintf("Health check for %s", svcName),
-			Notes:     svcDescr,
-			ServiceId: svcInstance,
-			Definition: CheckDefinitionData{
-				Http:     fmt.Sprintf("http://%s:6548/v1/health", cfg.Service.Address),
-				Method:   http.MethodGet,
-				Interval: "5s",
-				Timeout:  "1s",
-				DeregisterCriticalServiceAfter: "30s",
-			},
-		},
 	}
 
 	agent.registerCheckMeta = AgentCheckData{
