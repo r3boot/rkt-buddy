@@ -1,6 +1,10 @@
 package consul
 
 func (c *Consul) RunAgent() {
+	if !c.runAgent {
+		return
+	}
+
 	c.Deregister()
 
 	for serviceIsUp := range c.HealthEvents {

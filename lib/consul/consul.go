@@ -39,11 +39,13 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 		config:       cfg,
 		endpoint:     endpoint,
 		client:       client,
+		runAgent:     true,
 		HealthEvents: make(chan bool),
 	}
 
 	clusterMembers, err := agent.GetMembers()
 	if err != nil {
+		agent.runAgent = false
 		log.Warningf("NewConsul: Failed to get cluster clusterMembers, disabling consul support")
 		return agent, nil
 	}

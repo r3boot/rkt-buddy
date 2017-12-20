@@ -10,6 +10,7 @@ type Consul struct {
 	config         *config.Config
 	endpoint       string
 	client         *http.Client
+	runAgent       bool
 	HealthEvents   chan bool
 	registerMeta   RegisterData
 	deregisterMeta DeregisterData
