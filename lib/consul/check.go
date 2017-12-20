@@ -5,10 +5,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/prometheus/common/log"
 )
 
 type AgentCheckData struct {
 	Id                             string `json:"ID"`
+	ServiceId                      string `json:"ServiceID"`
 	Name                           string `json:"Name"`
 	Node                           string `json:"Node"`
 	Notes                          string `json:"Notes"`
