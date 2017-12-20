@@ -44,12 +44,12 @@ type RegisterData struct {
 
 func (c *Consul) Register() error {
 
-	log.Debugf("%v", c.registerMeta)
-
 	data, err := json.Marshal(c.registerMeta)
 	if err != nil {
 		return fmt.Errorf("Consul.Register json.Marshal: %v", err)
 	}
+
+	log.Debugf("data: %s", string(data))
 
 	endpoint := fmt.Sprintf("%s/v1/catalog/register", c.endpoint)
 
