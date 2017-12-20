@@ -90,6 +90,13 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 			Address: cfg.Service.Address,
 			Port:    svcPort,
 		},
+		Check: CheckData{
+			Node:      cfg.Service.Node,
+			CheckId:   svcInstance,
+			Name:      fmt.Sprintf("Health check for %s", svcName),
+			Notes:     svcDescr,
+			ServiceId: svcInstance,
+		},
 	}
 
 	agent.registerCheckMeta = AgentCheckData{
