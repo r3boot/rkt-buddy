@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"github.com/prometheus/common/log"
 )
 
 type AgentCheckData struct {
