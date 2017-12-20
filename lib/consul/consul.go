@@ -48,6 +48,7 @@ func NewConsul(l *logger.Logger, cfg *config.Config) (*Consul, error) {
 	clusterMembers, err := agent.GetMembers()
 	if err != nil {
 		agent.runAgent = false
+		log.Warningf("err: %v", err)
 		log.Warningf("NewConsul: Failed to get cluster clusterMembers, disabling consul support")
 		return agent, nil
 	}
